@@ -31,28 +31,62 @@
       font-size: 14px;
       line-height: 1.4;
     }
-    #summarizeBtn {
+    .highlight {
+      background-color: #fff176;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+    .button {
+      flex: 1;
       background-color: #3498db;
       color: white;
       border: none;
       padding: 10px 20px;
       border-radius: 5px;
       cursor: pointer;
-      width: 100%;
-      margin-bottom: 15px;
+      font-size: 14px;
+      transition: all 0.2s ease;
     }
-    #summarizeBtn:hover {
+    .button:hover {
       background-color: #2980b9;
+      transform: translateY(-1px);
+    }
+    .button:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    #downloadBtn {
+      background-color: #27ae60;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.2s linear;
+    }
+    #downloadBtn.visible {
+      visibility: visible;
+      opacity: 1;
+    }
+    #downloadBtn:hover {
+      background-color: #219a52;
     }
     .loading {
       display: none;
       text-align: center;
       color: #7f8c8d;
+      margin: 10px 0;
     }
     #error {
       color: #e74c3c;
       display: none;
       margin-bottom: 10px;
+      padding: 10px;
+      background-color: #fde8e8;
+      border-radius: 5px;
     }
   </style>
 </head>
@@ -60,7 +94,12 @@
   <div class="container">
     <h1>Research Paper Summarizer</h1>
     <div id="error"></div>
-    <button id="summarizeBtn">Summarize Paper</button>
+    
+    <div class="button-group">
+      <button id="summarizeBtn" class="button">Summarize Paper</button>
+      <button id="downloadBtn" class="button">Download Summary</button>
+    </div>
+    
     <div class="loading" id="loading">Analyzing paper...</div>
     
     <div id="results" style="display: none;">
