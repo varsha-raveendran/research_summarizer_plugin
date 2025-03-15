@@ -2,130 +2,40 @@
 <html>
 <head>
   <title>Research Paper Summarizer</title>
-  <style>
-    body {
-      width: 400px;
-      padding: 20px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .container {
-      max-width: 100%;
-    }
-    h1 {
-      font-size: 18px;
-      color: #2c3e50;
-      margin-bottom: 15px;
-    }
-    .summary-section {
-      margin-bottom: 15px;
-    }
-    .section-title {
-      font-weight: bold;
-      color: #34495e;
-      margin-bottom: 5px;
-    }
-    .section-content {
-      background-color: #f7f9fc;
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 14px;
-      line-height: 1.4;
-    }
-    .highlight {
-      background-color: #fff176;
-      padding: 0 2px;
-      border-radius: 2px;
-    }
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-    .button {
-      flex: 1;
-      background-color: #3498db;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.2s ease;
-    }
-    .button:hover {
-      background-color: #2980b9;
-      transform: translateY(-1px);
-    }
-    .button:disabled {
-      background-color: #bdc3c7;
-      cursor: not-allowed;
-      transform: none;
-    }
-    #downloadBtn {
-      background-color: #27ae60;
-      visibility: hidden;
-      opacity: 0;
-      transition: visibility 0s, opacity 0.2s linear;
-    }
-    #downloadBtn.visible {
-      visibility: visible;
-      opacity: 1;
-    }
-    #downloadBtn:hover {
-      background-color: #219a52;
-    }
-    .loading {
-      display: none;
-      text-align: center;
-      color: #7f8c8d;
-      margin: 10px 0;
-    }
-    #error {
-      color: #e74c3c;
-      display: none;
-      margin-bottom: 10px;
-      padding: 10px;
-      background-color: #fde8e8;
-      border-radius: 5px;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="popup.css">
 </head>
 <body>
   <div class="container">
-    <h1>Research Paper Summarizer</h1>
+    <button id="summarizeBtn" class="button">Summarize Paper</button>
+    <button id="downloadBtn" class="button">Download Summary</button>
+    
+    <div id="loading">Analyzing paper...</div>
     <div id="error"></div>
     
-    <div class="button-group">
-      <button id="summarizeBtn" class="button">Summarize Paper</button>
-      <button id="downloadBtn" class="button">Download Summary</button>
-    </div>
-    
-    <div class="loading" id="loading">Analyzing paper...</div>
-    
-    <div id="results" style="display: none;">
-      <div class="summary-section">
-        <div class="section-title">Abstract Summary</div>
-        <div class="section-content" id="abstract"></div>
-      </div>
-      
-      <div class="summary-section">
-        <div class="section-title">Key Findings</div>
-        <div class="section-content" id="findings"></div>
-      </div>
-      
-      <div class="summary-section">
-        <div class="section-title">Methodology</div>
-        <div class="section-content" id="methodology"></div>
-      </div>
-      
-      <div class="summary-section">
-        <div class="section-title">Limitations</div>
-        <div class="section-content" id="limitations"></div>
-      </div>
-      
-      <div class="summary-section">
-        <div class="section-title">References & Citations</div>
-        <div class="section-content" id="references"></div>
+    <div id="results">
+      <div class="tab-container">
+        <div class="tab-buttons">
+          <button class="tab-button active" data-tab="summary">Summary</button>
+          <button class="tab-button" data-tab="flashcards">Flashcards</button>
+          <button class="tab-button" data-tab="questions">Research Questions</button>
+        </div>
+        
+        <div id="summary-tab" class="tab-content active">
+          <div id="abstract"></div>
+          <div id="findings"></div>
+          <div id="methodology"></div>
+          <div id="limitations"></div>
+          <div id="references"></div>
+        </div>
+        
+        <div id="flashcards-tab" class="tab-content">
+          <button id="shuffleFlashcards">Shuffle Flashcards</button>
+          <div id="flashcards-container"></div>
+        </div>
+        
+        <div id="questions-tab" class="tab-content">
+          <div id="questions-container"></div>
+        </div>
       </div>
     </div>
   </div>
