@@ -25,7 +25,6 @@ A Chrome extension that helps you quickly understand research papers by automati
 
 ## Limitations
 
-- Currently only works with HTML-based papers (PDF support coming soon)
 - Requires proper HTML structure in the research paper webpage
 - May not detect all sections in papers with non-standard formatting
 
