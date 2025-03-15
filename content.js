@@ -138,11 +138,16 @@ function processPDFContent(text) {
 
 // Main function to analyze the paper
 async function analyzePaper() {
+  console.log('Starting paper analysis...');
+  
   // Check if we're on a PDF
   if (document.contentType === 'application/pdf') {
+    console.log('Analyzing PDF document...');
     return await analyzePDF();
   }
 
+  console.log('Analyzing HTML document...');
+  
   // Handle HTML content
   const abstract = findSection(['abstract']) ||
                   extractText('.abstract') ||
@@ -179,9 +184,30 @@ async function analyzePaper() {
 // Listen for messages from the popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'summarize') {
-    analyzePaper()
-      .then(paperData => sendResponse(paperData))
-      .catch(error => sendResponse({ error: error.message }));
-    return true; // Required for async response
+    // Immediately respond that we're processing
+    sendResponse({ status: 'processing' });
+    
+    // Process the paper in a separate async function
+    (async () => {
+      try {
+        console.log('Starting analysis...');
+        const result = await analyzePaper();
+        console.log('Analysis complete:', result);
+        // Send the result through a new message
+        chrome.runtime.sendMessage({
+          action: 'analysisComplete',
+          data: result
+        });
+      } catch (error) {
+        console.error('Analysis failed:', error);
+        // Send the error through a new message
+        chrome.runtime.sendMessage({
+          action: 'analysisError',
+          error: error.message || 'Failed to analyze paper'
+        });
+      }
+    })();
+    
+    return false; // Don't keep the message channel open
   }
 }); 

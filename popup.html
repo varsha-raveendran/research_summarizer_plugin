@@ -6,31 +6,30 @@
 </head>
 <body>
   <div class="container">
-    <button id="summarizeBtn" class="button">Summarize Paper</button>
-    <button id="downloadBtn" class="button">Download Summary</button>
+    <div class="button-container">
+      <button id="summarizeBtn" class="button primary">Summarize Paper</button>
+      <button id="downloadBtn" class="button secondary">Download Summary</button>
+    </div>
     
-    <div id="loading">Analyzing paper...</div>
+    <div id="loading">
+      <div class="loading-text">Analyzing paper...</div>
+    </div>
+    
     <div id="error"></div>
     
     <div id="results">
       <div class="tab-container">
         <div class="tab-buttons">
           <button class="tab-button active" data-tab="summary">Summary</button>
-          <button class="tab-button" data-tab="flashcards">Flashcards</button>
           <button class="tab-button" data-tab="questions">Research Questions</button>
         </div>
         
         <div id="summary-tab" class="tab-content active">
-          <div id="abstract"></div>
-          <div id="findings"></div>
-          <div id="methodology"></div>
-          <div id="limitations"></div>
-          <div id="references"></div>
-        </div>
-        
-        <div id="flashcards-tab" class="tab-content">
-          <button id="shuffleFlashcards">Shuffle Flashcards</button>
-          <div id="flashcards-container"></div>
+          <div id="abstract" class="summary-section"></div>
+          <div id="findings" class="summary-section"></div>
+          <div id="methodology" class="summary-section"></div>
+          <div id="limitations" class="summary-section"></div>
+          <div id="references" class="summary-section"></div>
         </div>
         
         <div id="questions-tab" class="tab-content">
