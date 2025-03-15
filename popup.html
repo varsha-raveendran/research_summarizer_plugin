@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Research Paper Summarizer</title>
+  <style>
+    body {
+      width: 400px;
+      padding: 20px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      max-width: 100%;
+    }
+    h1 {
+      font-size: 18px;
+      color: #2c3e50;
+      margin-bottom: 15px;
+    }
+    .summary-section {
+      margin-bottom: 15px;
+    }
+    .section-title {
+      font-weight: bold;
+      color: #34495e;
+      margin-bottom: 5px;
+    }
+    .section-content {
+      background-color: #f7f9fc;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    #summarizeBtn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    #summarizeBtn:hover {
+      background-color: #2980b9;
+    }
+    .loading {
+      display: none;
+      text-align: center;
+      color: #7f8c8d;
+    }
+    #error {
+      color: #e74c3c;
+      display: none;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Research Paper Summarizer</h1>
+    <div id="error"></div>
+    <button id="summarizeBtn">Summarize Paper</button>
+    <div class="loading" id="loading">Analyzing paper...</div>
+    
+    <div id="results" style="display: none;">
+      <div class="summary-section">
+        <div class="section-title">Abstract Summary</div>
+        <div class="section-content" id="abstract"></div>
+      </div>
+      
+      <div class="summary-section">
+        <div class="section-title">Key Findings</div>
+        <div class="section-content" id="findings"></div>
+      </div>
+      
+      <div class="summary-section">
+        <div class="section-title">Methodology</div>
+        <div class="section-content" id="methodology"></div>
+      </div>
+      
+      <div class="summary-section">
+        <div class="section-title">Limitations</div>
+        <div class="section-content" id="limitations"></div>
+      </div>
+      
+      <div class="summary-section">
+        <div class="section-title">References & Citations</div>
+        <div class="section-content" id="references"></div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
